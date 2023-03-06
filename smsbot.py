@@ -7,6 +7,7 @@ import os, sys
 import csv
 import random
 import time
+import glob
 
 re="\033[1;31m"
 gr="\033[1;32m"
@@ -25,7 +26,7 @@ class main():
     def send_sms():
         try:
             cpass = configparser.RawConfigParser()
-            cpass.read('config.data')
+            cpass.read('system/config.data')
             api_id = cpass['cred']['id']
             api_hash = cpass['cred']['hash']
             phone = cpass['cred']['phone']
@@ -46,7 +47,8 @@ class main():
         
         os.system('clear')
         main.banner()
-        #input_file = "/Users/sergejstolin/PythonProg/TGPars-main/members.csv"
+        print(gr+'[+] Доступные базы данных:'+re)
+        print(os.listdir('databases/'))
         m_file = input(gr+"[+] Введите название базы для рассылки: "+re)
         input_file = "databases/"+m_file+".csv"
         print((gr+'[+] Выбрана база ')+(re+ m_file+".csv"))
@@ -63,8 +65,12 @@ class main():
                 users.append(user)
         print(gr+"[1] Сделать рассылку по userID\n[2] Сделать рассылку по имени")
         mode = int(input(gr+"Выберите : "+re))
-         
-        messagesample = open('message.txt')
+        
+        print(gr+'[+] Доступные сообщения:'+re)
+        print(os.listdir('messages/'))
+        t_file = input(gr+"[+] Выберите сообщение для рассылки: "+re)
+        messagesample = open("messages/"+t_file+".txt")
+        print((gr+'[+] Выбрано сообщение ')+(re+ t_file+".txt"))
         message = messagesample.read()
 
         for user in users:
