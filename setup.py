@@ -12,6 +12,7 @@ cy="\033[1;36m"
 
 import os, sys
 import time
+import shutil
 
 def banner():
     os.system('clear')
@@ -79,7 +80,7 @@ def update_tool():
 	import requests as r
 	banner()
 	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
-	if source.text == '1.1.2':
+	if source.text == '1.1.1':
 		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия')
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Удаляю старые файлы...')
