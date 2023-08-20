@@ -12,7 +12,6 @@ cy="\033[1;36m"
 
 import os, sys
 import time
-import shutil
 
 def banner():
     os.system('clear')
@@ -98,9 +97,7 @@ def update_tool():
 			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version
 			chmod 777 *.py
 			""");time.sleep(3)
-		ver_file = 'version'
-		des = '/system/'
-		shutil.move(ver_file,des)
+		os.replace("version", "system/version")
 		print(gr+'\n['+cy+'+'+gr+']'+cy+' Обновление завершено.\n')
 
 try:
