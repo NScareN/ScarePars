@@ -1,7 +1,7 @@
 # ScarePars
 * <img src=https://img.shields.io/badge/version-1.1.1-blue />
 # Установка
-![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Windows] (https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
   * Скачайте Python 3.8 [здесь](https://www.python.org/downloads/release/python-38)
   * Запустите установщик, нажмите 'add python to PATH'
   * Скачайте `ScarePars`
