@@ -84,6 +84,9 @@ def update_tool():
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Удаляю старые файлы...')
 		os.system('rm *.py');time.sleep(3)
+		os.system('rm LICENSE');time.sleep(3)
+		os.system('rm README.md');time.sleep(3)
+		os.system('rm system/version');time.sleep(3)
 		print(gr+'['+cy+'+'+gr+']'+cy+' Получаю файлы обновления...')
 		os.system("""
 			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/pars.py
