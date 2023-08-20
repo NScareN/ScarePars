@@ -12,7 +12,7 @@
   * Напишите в командной строке: **python setup.py -c**
   * Введите `api_id`, `api_hash` и `номер телефона`
   
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) & ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) + ![macOS](https://img.shields.io/badge/mac%20os-000000?style=for-the-badge&logo=macos&logoColor=F0F0F0)
   * **sudo apt update**
   * **sudo apt install python3 python3-pip git -y**
   * **git clone `https://github.com/NScareN/ScarePars/`**
