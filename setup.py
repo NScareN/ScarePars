@@ -80,7 +80,7 @@ def update_tool():
 	import requests as r
 	banner()
 	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
-	if source.text == '1.1.1':
+	if source.text == '1.1.2':
 		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия')
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Удаляю старые файлы...')
@@ -98,7 +98,7 @@ def update_tool():
 			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version
 			chmod 777 *.py
 			""");time.sleep(3)
-		ver_file = '/version'
+		ver_file = 'version'
 		des = '/system/'
 		shutil.move(ver_file,des)
 		print(gr+'\n['+cy+'+'+gr+']'+cy+' Обновление завершено.\n')
