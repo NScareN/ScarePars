@@ -82,8 +82,8 @@ def update_tool():
 	os.system('clear')
 	banner()
 	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
-	if source.text == '1.1.2':
-		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' + source.text + ')')
+	if source.text == banner_ver:
+		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' +re + banner_ver +cy +')')
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Удаляю старые файлы...')
 		os.system('rm *.py');time.sleep(3)
