@@ -89,6 +89,9 @@ def update_tool():
 			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/pars.py
 			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/setup.py
 			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/smsbot.py
+			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/LICENSE
+			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/README.md
+			curl -s -O system/https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version
 			chmod 777 *.py
 			""");time.sleep(3)
 		print(gr+'\n['+cy+'+'+gr+']'+cy+' Обновление завершено.\n')
