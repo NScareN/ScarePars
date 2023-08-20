@@ -109,7 +109,7 @@ def update_check():
 	banner()
 	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
 	if source.text == banner_ver:
-		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' + banner_ver + ')')
+		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' +re + banner_ver +cy + ')')
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Ваша версия: ' +re + 'v' + banner_ver)
 		print(gr+'['+cy+'+'+gr+']'+cy+' Последняя доступная версия: ' +re + 'v' + source.text)
