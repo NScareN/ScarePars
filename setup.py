@@ -12,15 +12,15 @@ cy="\033[1;36m"
 
 import os, sys
 import time
-import shutil
+import requests as r
 
+with open("system/version", "r") as file:
+       banner_ver = file.read()
+       
 def banner():
-    os.system('clear')
-    print(f"""
-    {re}╔═╗╔═╗╔═╗╔═╗╔══{cy}╔═╗╔═╗╔═╗╔═╗
-    {re}╚═╗║  ╠═╣╠╦╝╠══{cy}╠═╝╠═╣╠╦╝╚═╗
-    {re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝
-    """)
+    print(f"{re}╔═╗╔═╗╔═╗╔═╗╔══{cy}╔═╗╔═╗╔═╗╔═╗")
+    print(f"{re}╚═╗║  ╠═╣╠╦╝╠══{cy}╠═╝╠═╣╠╦╝╚═╗")
+    print(f"{re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝ " + "v" + banner_ver)
 
 def requirements():
 	def csv_lib():
@@ -49,6 +49,7 @@ def requirements():
 
 def config_setup():
 	import configparser
+	os.system('clear')
 	banner()
 	cpass = configparser.RawConfigParser()
 	cpass.add_section('cred')
@@ -66,6 +67,7 @@ def config_setup():
 def merge_csv():
 	import pandas as pd
 	import sys
+	os.system('clear')
 	banner()
 	file1 = pd.read_csv("databases/"+sys.argv[2])
 	file2 = pd.read_csv("databases/"+sys.argv[3])
@@ -77,11 +79,11 @@ def merge_csv():
 	print((gr+'['+cy+'+'+gr+']'+cy+' База сохранена как ')+(re+ mm_file)+('.csv'+'\n'))
 
 def update_tool():
-	import requests as r
+	os.system('clear')
 	banner()
 	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
-	if source.text == '1.1.1':
-		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия')
+	if source.text == '1.1.2':
+		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' + source.text + ')')
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Удаляю старые файлы...')
 		os.system('rm *.py');time.sleep(3)
@@ -101,6 +103,17 @@ def update_tool():
 		os.replace("version", "system/version")
 		print(gr+'\n['+cy+'+'+gr+']'+cy+' Обновление завершено.\n')
 
+
+def update_check():
+	os.system('clear')
+	banner()
+	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
+	if source.text == banner_ver:
+		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' + banner_ver + ')')
+	else:
+		print(gr+'['+cy+'+'+gr+']'+cy+' Ваша версия: ' +re + 'v' + banner_ver)
+		print(gr+'['+cy+'+'+gr+']'+cy+' Последняя доступная версия: ' +re + 'v' + source.text)
+
 try:
 	if any ([sys.argv[1] == '--config', sys.argv[1] == '-c']):
 		print(gr+'['+cy+'+'+gr+']'+cy+' Выбранный модуль: '+re+sys.argv[1])
@@ -111,16 +124,20 @@ try:
 	elif any ([sys.argv[1] == '--update', sys.argv[1] == '-u']):
 		print(gr+'['+cy+'+'+gr+']'+cy+' Выбранный модуль: '+re+sys.argv[1])
 		update_tool()
+	elif any ([sys.argv[1] == '--updatecheck', sys.argv[1] == '-uc']):
+		print(gr+'['+cy+'+'+gr+']'+cy+' Выбранный модуль: '+re+sys.argv[1])
+		update_check()
 	elif any ([sys.argv[1] == '--install', sys.argv[1] == '-i']):
 		requirements()
 	elif any ([sys.argv[1] == '--help', sys.argv[1] == '-h']):
 		banner()
 		print("""
-	( --config  / -c ) установить конфигурацию API
-	( --merge   / -m ) соеденить 2 базы в одну
-	( --update  / -u ) обновить инструмент до последней версии
-	( --install / -i ) установить компоненты
-	( --help    / -h ) показать это сообщение
+	( --config      /  -c  ) установить конфигурацию API
+	( --merge       /  -m  ) соеденить 2 базы в одну
+	( --update      /  -u  ) обновить инструмент до последней версии
+	( --updatecheck /  -uc ) проверить наличие обновлений
+	( --install     /  -i  ) установить компоненты
+	( --help        /  -h  ) показать это сообщение
 			""")
 	else:
 		print('\n'+gr+'['+re+'!'+gr+']'+cy+' Неизвестный аргумент: '+ sys.argv[1])

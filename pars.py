@@ -11,11 +11,12 @@ gr="\033[1;32m"
 cy="\033[1;36m"
 
 def banner():
-        print(f"""
-    {re}╔═╗╔═╗╔═╗╔═╗╔══{cy}╔═╗╔═╗╔═╗╔═╗
-    {re}╚═╗║  ╠═╣╠╦╝╠══{cy}╠═╝╠═╣╠╦╝╚═╗
-    {re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝
-            """)
+    with open("system/version", "r") as file:
+       banner_ver = file.read()
+    print(f"{re}╔═╗╔═╗╔═╗╔═╗╔══{cy}╔═╗╔═╗╔═╗╔═╗")
+    print(f"{re}╚═╗║  ╠═╣╠╦╝╠══{cy}╠═╝╠═╣╠╦╝╚═╗")
+    print(f"{re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝ " + "v" + banner_ver)
+
 
 cpass = configparser.RawConfigParser()
 cpass.read('system/config.data')
@@ -104,4 +105,3 @@ with open("databases/"+m_file+".csv","w",encoding='UTF-8') as f:
             writer.writerow([username,user.id,user.access_hash,name,target_group.title, target_group.id])
 file_path = os.path.dirname(__file__)    
 print((gr+"[+] Участники группы ")+(re+ g_name)+(gr+" сохранены в базу ")+(re+ m_file+".csv"))
-print(file_path)

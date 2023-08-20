@@ -17,11 +17,12 @@ SLEEP_TIME = 30
 class main():
 
     def banner():
-        print(f"""
-    {re}╔═╗╔═╗╔═╗╔═╗╔══{cy}╔═╗╔═╗╔═╗╔═╗
-    {re}╚═╗║  ╠═╣╠╦╝╠══{cy}╠═╝╠═╣╠╦╝╚═╗
-    {re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝
-            """)
+       with open("system/version", "r") as file:
+          banner_ver = file.read()
+       print(f"{re}╔═╗╔═╗╔═╗╔═╗╔══{cy}╔═╗╔═╗╔═╗╔═╗")
+       print(f"{re}╚═╗║  ╠═╣╠╦╝╠══{cy}╠═╝╠═╣╠╦╝╚═╗")
+       print(f"{re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝ " + "v" + banner_ver)
+
 
     def send_sms():
         try:
@@ -72,6 +73,8 @@ class main():
         messagesample = open("messages/"+t_file+".txt")
         print((gr+'[+] Выбрано сообщение ')+(re+ t_file+".txt"))
         message = messagesample.read()
+        print(gr+"[+] Установите время между отправкой сообщений (в секундах):")
+        SLEEP_TIME = int(input(gr+"[+] (По-умолчанию 30 секунд) : "+re))
 
         for user in users:
             if mode == 2:
@@ -98,7 +101,7 @@ class main():
                 print(re+"[!] Пытаюсь продолжить...")
                 continue
         client.disconnect()
-        print((gr+"Готово. Сообщение разослано всем пользователям из базы ")+(re+ m_file+".csv"))
+        print((gr+"[+] Готово. Сообщение разослано всем пользователям из базы ")+(re+ m_file+".csv"))
 
 
 
