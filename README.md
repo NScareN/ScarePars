@@ -1,4 +1,5 @@
 # ScarePars
+* https://img.shields.io/badge/version-1.1.1-blue
 # Установка
 * Windows:
   * Скачайте Python 3.8 [здесь](https://www.python.org/downloads/release/python-38)
@@ -32,6 +33,7 @@
   * Выберите `API Development Tools`
   * В терминале напишите **python setup.py -c**
   * Введите `api_id`, `api_hash` и `номер телефона`
+!Внимание, если у вас появляются ошибки при исполнении команды apt, возпользуйтесь аналогом в виде Homebrew
 
 # Использование
 * Парсинг
