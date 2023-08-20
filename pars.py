@@ -18,7 +18,7 @@ def banner():
             """)
 
 cpass = configparser.RawConfigParser()
-cpass.read('config.data')
+cpass.read('system/config.data')
 
 try:
     api_id = cpass['cred']['id']
@@ -28,7 +28,8 @@ try:
 except KeyError:
     os.system('clear')
     banner()
-    print(re+"[!] Для начала, запустите setup.py\n")
+    print(re+"[!] Конфиг повреждён или не обнаружен\n")
+    print(re+"[!] Запустите setup.py -c\n")
     sys.exit(1)
 
 client.connect()
