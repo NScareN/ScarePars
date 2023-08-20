@@ -96,7 +96,7 @@ def update_tool():
 			curl -s -O https://raw.githubusercontent.com/NScareN/ScarePars/main/README.md
 			chmod 777 *.py
 			""");time.sleep(3)
-		os.system("curl -s -O" + "/system/" + "https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version");time.sleep(3)
+		os.system("curl -s -O " + "/system/" + "https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version");time.sleep(3)
 		os.system("chmod 777 *.py");time.sleep(3)
 		print(gr+'\n['+cy+'+'+gr+']'+cy+' Обновление завершено.\n')
 
