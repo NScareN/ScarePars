@@ -20,27 +20,17 @@ with open("system/version", "r") as file:
 def banner():
     print(f"{re}╔═╗╔═╗╔═╗╔═╗╔══{cy}╔═╗╔═╗╔═╗╔═╗")
     print(f"{re}╚═╗║  ╠═╣╠╦╝╠══{cy}╠═╝╠═╣╠╦╝╚═╗")
-    print(f"{re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝ " + "v" + banner_ver)
+    print(f"{re}╚═╝╚═╝╩ ╩╩╚═╚══{cy}╩  ╩ ╩╩╚═╚═╝ " + "v" + banner_ver + "\n")
 
 def requirements():
-	def csv_lib():
-		banner()
-		print(gr+'['+cy+'+'+gr+']'+cy+' Это может занять время...')
-		os.system("""
-			pip3 install cython numpy pandas
-			python3 -m pip install cython numpy pandas
-			""")
+	os.system('clear')
 	banner()
-	print(gr+'['+cy+'+'+gr+']'+cy+' Это займет до 10 минут.')
-	input_csv = input(gr+'['+cy+'+'+gr+']'+cy+' Хотите включить слияние csv? (y/n): ').lower()
-	if input_csv == "y":
-		csv_lib()
-	else:
-		pass
 	print(gr+"[+] Устанавливаю компоненты...")
 	os.system("""
 		pip3 install telethon requests configparser
 		python3 -m pip install telethon requests configparser
+		pip3 install cython numpy pandas
+		python3 -m pip install cython numpy pandas
 		touch system/config.data
 		""")
 	banner()
@@ -63,27 +53,25 @@ def config_setup():
 	cpass.write(setup)
 	setup.close()
 	print(gr+"[+] Установка завершена!")
-
-def merge_csv():
-	import pandas as pd
-	import sys
-	os.system('clear')
-	banner()
-	file1 = pd.read_csv("databases/"+sys.argv[2])
-	file2 = pd.read_csv("databases/"+sys.argv[3])
-	print(gr+'['+cy+'+'+gr+']'+cy+' Слияние '+sys.argv[2]+' и '+sys.argv[3]+'...')
-	print(gr+'['+cy+'+'+gr+']'+cy+' Большие файлы могут потребовать больше времени...')
-	merge = file1.merge(file2, on='username')
-	mm_file = input(gr+"[+] Введите название базы для сохранения: "+re)
-	merge.to_csv("databases/"+mm_file+".csv", index=False)
-	print((gr+'['+cy+'+'+gr+']'+cy+' База сохранена как ')+(re+ mm_file)+('.csv'+'\n'))
+	input(gr+'['+cy+'+'+gr+']'+cy+' Вернуться в главное меню ')
+	import start
+	start.start_up()
 
 def update_tool():
 	os.system('clear')
 	banner()
-	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
-	if source.text == banner_ver:
+	try:
+		source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
+	except r.exceptions.SSLError:
+		print(gr+'['+re+'!'+gr+']'+cy+' Нет связи с сервером (попробуйте включить VPN)\n')
+		input(gr+'['+cy+'+'+gr+']'+cy+' Вернуться в главное меню ')
+		import start
+		start.start_up()
+	if source.text == banner_ver or source.text < banner_ver:
 		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' +re + banner_ver +cy +')')
+		input(gr+'['+cy+'+'+gr+']'+cy+' Вернуться в главное меню ')
+		import start
+		start.start_up()
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Удаляю старые файлы...')
 		os.system('rm *.py');time.sleep(3)
@@ -102,13 +90,16 @@ def update_tool():
 			""");time.sleep(3)
 		os.replace("version", "system/version")
 		print(gr+'\n['+cy+'+'+gr+']'+cy+' Обновление завершено.\n')
+		input(gr+'['+cy+'+'+gr+']'+cy+' Вернуться в главное меню ')
+		import start
+		start.start_up()
 
 
 def update_check():
 	os.system('clear')
 	banner()
 	source = r.get("https://raw.githubusercontent.com/NScareN/ScarePars/main/system/version")
-	if source.text == banner_ver:
+	if source.text == banner_ver or source.text < banner_ver:
 		print(gr+'['+cy+'+'+gr+']'+cy+' У вас последняя версия ' + '(' +re + banner_ver +cy + ')')
 	else:
 		print(gr+'['+cy+'+'+gr+']'+cy+' Ваша версия: ' +re + 'v' + banner_ver)
@@ -118,9 +109,6 @@ try:
 	if any ([sys.argv[1] == '--config', sys.argv[1] == '-c']):
 		print(gr+'['+cy+'+'+gr+']'+cy+' Выбранный модуль: '+re+sys.argv[1])
 		config_setup()
-	elif any ([sys.argv[1] == '--merge', sys.argv[1] == '-m']):
-		print(gr+'['+cy+'+'+gr+']'+cy+' Выбранный модуль: '+re+sys.argv[1])
-		merge_csv()
 	elif any ([sys.argv[1] == '--update', sys.argv[1] == '-u']):
 		print(gr+'['+cy+'+'+gr+']'+cy+' Выбранный модуль: '+re+sys.argv[1])
 		update_tool()
@@ -133,7 +121,6 @@ try:
 		banner()
 		print("""
 	( --config      /  -c  ) установить конфигурацию API
-	( --merge       /  -m  ) соеденить 2 базы в одну
 	( --update      /  -u  ) обновить инструмент до последней версии
 	( --updatecheck /  -uc ) проверить наличие обновлений
 	( --install     /  -i  ) установить компоненты
@@ -144,6 +131,6 @@ try:
 		print(gr+'['+re+'!'+gr+']'+cy+' Для помощи используйте: ')
 		print(gr+'$ python3 setup.py -h'+'\n')
 except IndexError:
-	print('\n'+gr+'['+re+'!'+gr+']'+cy+' Не выбран аргумент для: '+ sys.argv[1])
-	print(gr+'['+re+'!'+gr+']'+cy+' Для помощи используйте: ')
-	print(gr+'$ python3 setup.py -h'+'\n')
+		print('\n'+gr+'['+re+'!'+gr+']'+cy+' Не выбран аргумент')
+		print(gr+'['+re+'!'+gr+']'+cy+' Для помощи используйте: ')
+		print(gr+'$ python3 setup.py -h'+'\n')

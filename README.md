@@ -1,5 +1,5 @@
 # ScarePars
-* <img src=https://img.shields.io/badge/version-1.2-blue />
+* <img src=https://img.shields.io/badge/version-2.0-blue />
 # Установка
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
   * Скачайте Python 3.8 [здесь](https://www.python.org/downloads/release/python-38)
