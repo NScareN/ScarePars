@@ -31,9 +31,9 @@ def banner():
 def start_up():
     os.system('clear')
     banner()
+    print((cy + "[" + gr + "+" + cy + "]" + " Доступные функции:"))
     print((cy + "[" + re + "1" + cy + "]" + " рассылка"))
     print((cy + "[" + re + "2" + cy + "]" + " парсинг"))
-    print((cy + "[" + gr + "+" + cy + "]" + " Доступные функции:"))
     print((cy + "[" + re + "3" + cy + "]" + " настройка конфига"))
     print((cy + "[" + re + "4" + cy + "]" + " обновление скрипта"))
     print((cy + "[" + re + "5" + cy + "]" + " выход"))
@@ -56,6 +56,3 @@ def start_up():
         sys.exit()
     else:
         start_up()
-
-
-start_up()
